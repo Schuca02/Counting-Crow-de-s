@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+
+</head>
+
+<body>
+    <input type="file" id="csvFile" accept=".csv" />
+    <button id="submit">Submit</button>
+    <button id="clear">Clear</button>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js">
+    </script>
+
+    <script>
+        function zipcodeReducer(acc, v) {
+            let currentValue = acc.get(v.ZipCode) || 0;
+            let newValue = currentValue + 1;
+            let theRet = acc.set(v.ZipCode, newValue);
+            return theRet;
+        };
+
+        function parseComplete(results) {
+            const zipCodeFreqs = results.data.reduce(zipcodeReducer, zipCodeData);
+            console.log(Object.fromEntries(zipCodeFreqs));
+            // console.log(Object.fromEntries(zipCodeFreqs)["85719"]) test: should be 3 after CSV1
+        };
+
+        const parseConfig = {
+            download: true,
+            header: true,
+            skipEmptyLines: true,
+            complete: parseComplete
+        };
+
+        const zipCodeData = new Map();
+        document.getElementById('submit').addEventListener('click', () => {
+            Papa.parse(document.getElementById('csvFile').files[0], parseConfig);
+        });
+        document.getElementById('clear').addEventListener('click', () => {
+            zipCodeData.clear();
+        });
+
+
+    </script>
+</body>
+
+</html>
