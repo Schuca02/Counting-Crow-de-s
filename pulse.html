@@ -14,19 +14,24 @@
     </script>
 
     <script>
-        function zipcodeReducer(acc, v) {
-            let currentValue = acc.get(v.ZipCode) || 0;
+        //Empty map to store (zipcode, frequency)
+        const zipCodeData = new Map();
+
+        //accumulator that adds 1 
+        function freqReducer(acc, v) {
+            let currentValue = acc.get(v) || 0;
             let newValue = currentValue + 1;
-            let theRet = acc.set(v.ZipCode, newValue);
+            let theRet = acc.set(v, newValue);
             return theRet;
         };
 
+        //Parse the csv, tally the instances with reduce, print them to the console. freqReducer funtion for clarity
         function parseComplete(results) {
-            const zipCodeFreqs = results.data.reduce(zipcodeReducer, zipCodeData);
+            const zipCodeFreqs = results.data.map(v => v.ZipCode).reduce(freqReducer, zipCodeData);
             console.log(Object.fromEntries(zipCodeFreqs));
-            // console.log(Object.fromEntries(zipCodeFreqs)["85719"]) test: should be 3 after CSV1
+            // console.log(Object.fromEntries(zipCodeFreqs)["85719"]) test: should be 3 after CSV1. Can be used to look up specific number of zipcode instances
         };
-
+        //Papaparse config options
         const parseConfig = {
             download: true,
             header: true,
@@ -34,10 +39,12 @@
             complete: parseComplete
         };
 
-        const zipCodeData = new Map();
+        //adds csv file
         document.getElementById('submit').addEventListener('click', () => {
             Papa.parse(document.getElementById('csvFile').files[0], parseConfig);
         });
+
+        //clears in case you add one file twice
         document.getElementById('clear').addEventListener('click', () => {
             zipCodeData.clear();
         });
