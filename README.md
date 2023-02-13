@@ -1,5 +1,5 @@
 ﻿# Counting-Crow-de-s
-This program is used to parse through CSV's that have a ZipCode header and return the number of addresses each zipcode has. To use this program simply open the file with a browser. Open the developer tools (either right click and hit inspect) or press (F12). The results will be printed to the console. Upload a csv and click submit.
+This program is used to parse through CSV's that have a ZipCode header and return the number of addresses each zipcode has. To use this program simply open the file with a browser. Open the developer tools (either right click and hit inspect) or press (F12). Upload a csv and click submit. Results are printed to the console.
 
 It is important to note that this is a running total meaning that if you add two csv files, it will show you the total zipcodes for both files. Click clear before you submit another CSV if you are looking to have seperate results.
 
