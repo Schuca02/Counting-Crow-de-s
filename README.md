@@ -1,4 +1,4 @@
-﻿# Counting-Crow-de-s
+﻿# Counting-Zip-Crows
 **Purpose**
 
 This program is used to parse through CSVs that have a ZipCode header and return the number of addresses each zip code has in a map called zipCodeData. 
