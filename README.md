@@ -1,10 +1,18 @@
 ﻿# Counting-Crow-de-s
-This program is used to parse through CSV's that have a ZipCode header and return the number of addresses each zipcode has. To use this program simply open the file with a browser. Open the developer tools (either right click and hit inspect) or press (F12). Upload a csv and click submit. Results are printed to the console.
+**Purpose**
 
-It is important to note that this is a running total meaning that if you add two csv files, it will show you the total zipcodes for both files. Click clear before you submit another CSV if you are looking to have seperate results.
+This program is used to parse through CSVs that have a ZipCode header and return the number of addresses each zip code has in a map called zipCodeData. 
 
-There is a line in the code that has been commented out that would allow you to look at how many instances of a specified zipcode are in a CSV. It was used for testing but may be useful. Additionally, this program does not have any conditional logic for addresses that have a zipcode but are null or blank.
-
-I used PapaParse instead of FileReader to streamline the code. Inititially I had used a for loop to count the number of zipcodes, however there's more flexibility and clarity in the results using .reduce(). The .reduce() funtion tallied the number of occurances and returned an object that was stored in a map. {zipcode, (number of instances)}. The current format allows you to have all csv data in one result. As you add csv files the results will grow, or you can clear between uploads and have a new results map. The results map is called zipCodeData.
+If a CSV line item does not have a zip code (i.e., it is null or blank), there is no additional logic to look up the address’s zip code. Instead, it is skipped.
 
 
+**How to run this project**
+
+To run this program, open the file in your browser. Open the developer tools (Right click the webpage and hit “inspect”) or press F12. Upload a csv and click submit. Results are printed to the console.
+
+It is important to note that each additional CSV you add will contribute towards the same zip code tally. I.e., it will show you the total zip codes for both files. Clicking “clear” will flush the results and create a new output.
+
+
+**Miscellaneous Notes**
+
+I used the PapaParse library instead of the often-used FileReader to simplify the code. Initially, I used a for-loop to count the number of zip codes. The PapaParse .reduce() function tallies the number of occurrences and returns an object that is stored in a map {zip code, (number of instances)}. This allows you to have all csv data in one map. Using .reduce() ultimately reduces verbosity (pun intended). 

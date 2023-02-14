@@ -25,11 +25,11 @@
             return theRet;
         };
 
-        //Parse the csv, tally the instances with reduce, print them to the console. freqReducer funtion for clarity
+        //Parse the csv, tally the instances with reduce, print them to the console. freqReducer function for clarity
         function parseComplete(results) {
             const zipCodeFreqs = results.data.map(v => v.ZipCode).reduce(freqReducer, zipCodeData);
             console.log(Object.fromEntries(zipCodeFreqs));
-            // console.log(Object.fromEntries(zipCodeFreqs)["85719"]) test: should be 3 after CSV1. Can be used to look up specific number of zipcode instances
+            // console.log(Object.fromEntries(zipCodeFreqs)["ENTER ZIPCODE"]) test: should be x after uploading (x)CSV. 
         };
         //Papaparse config options
         const parseConfig = {
